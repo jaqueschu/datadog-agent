@@ -437,12 +437,14 @@ def check_gitlab_broken_dependencies(ctx):
 def lint_python(ctx):
     """
     Lints Python files.
-    See 'setup.cfg' file for configuration
+    See 'setup.cfg' and 'pyproject.toml' files for configuration.
     """
 
-    ctx.run("flake8 .")
+    ctx.run("pre-commit run flake8 --from-ref HEAD^ --to-ref HEAD")
+    ctx.run("pre-commit run black --from-ref HEAD^ --to-ref HEAD")
+    ctx.run("pre-commit run isort --from-ref HEAD^ --to-ref HEAD")
 
-    
+
 @task
 def install_shellcheck(ctx, version="0.7.0", destination="/usr/local/bin"):
     """
