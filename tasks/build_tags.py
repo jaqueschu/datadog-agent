@@ -2,6 +2,7 @@
 Utilities to manage build tags
 """
 import sys
+
 from invoke import task
 
 # ALL_TAGS lists any available build tag

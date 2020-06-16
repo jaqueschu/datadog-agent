@@ -2,6 +2,7 @@
 Agent namespaced tasks
 """
 from __future__ import print_function
+
 import datetime
 import glob
 import os
@@ -12,23 +13,23 @@ from distutils.dir_util import copy_tree
 from invoke import task
 from invoke.exceptions import Exit, ParseError
 
+from .build_tags import LINUX_ONLY_TAGS, WINDOWS_32BIT_EXCLUDE_TAGS, get_build_tags, get_default_build_tags
+from .docker import pull_base_images
+from .go import deps, generate
+from .rtloader import clean as rtloader_clean
+from .rtloader import install as rtloader_install
+from .rtloader import make as rtloader_make
+from .ssm import get_pfx_pass, get_signing_cert
 from .utils import (
+    REPO_PATH,
     bin_name,
     get_build_flags,
-    get_version_numeric_only,
-    load_release_versions,
     get_version,
-    has_both_python,
+    get_version_numeric_only,
     get_win_py_runtime_var,
+    has_both_python,
+    load_release_versions,
 )
-from .utils import REPO_PATH
-from .build_tags import get_build_tags, get_default_build_tags, LINUX_ONLY_TAGS, WINDOWS_32BIT_EXCLUDE_TAGS
-from .go import deps, generate
-from .docker import pull_base_images
-from .ssm import get_signing_cert, get_pfx_pass
-from .rtloader import make as rtloader_make
-from .rtloader import install as rtloader_install
-from .rtloader import clean as rtloader_clean
 
 # constants
 BIN_PATH = os.path.join(".", "bin", "agent")

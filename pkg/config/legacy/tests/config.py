@@ -5,21 +5,19 @@
 
 # stdlib
 import ConfigParser
-from cStringIO import StringIO
+# 3p
+import json
 import logging
 import logging.config
 import logging.handlers
 import os
 import re
-from socket import gaierror, gethostbyname
 import string
 import sys
-from urlparse import urlparse
+from cStringIO import StringIO
+from socket import gaierror, gethostbyname
 from urllib.request import getproxies
-
-# 3p
-import json
-
+from urlparse import urlparse
 
 # CONSTANTS
 TRACE_CONFIG = 'trace_config'  # used for tracing config load by service discovery

@@ -7,9 +7,8 @@ import shutil
 from distutils.dir_util import copy_tree
 
 from .build_tags import get_build_tags
-from .utils import get_build_flags, bin_name, get_version
-from .utils import REPO_PATH
 from .go import generate
+from .utils import REPO_PATH, bin_name, get_build_flags, get_version
 
 
 def build_common(

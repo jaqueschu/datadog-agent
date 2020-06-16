@@ -3,22 +3,22 @@ High level testing tasks
 """
 from __future__ import print_function
 
+import operator
 import os
 import re
-import operator
 import sys
-import yaml
 
+import yaml
 from invoke import task
 from invoke.exceptions import Exit
 
-from .utils import get_build_flags
-from .go import fmt, lint, vet, misspell, ineffassign, lint_licenses, golangci_lint, generate
-from .build_tags import get_default_build_tags, get_build_tags
 from .agent import integration_tests as agent_integration_tests
-from .dogstatsd import integration_tests as dsd_integration_tests
-from .trace_agent import integration_tests as trace_integration_tests
+from .build_tags import get_build_tags, get_default_build_tags
 from .cluster_agent import integration_tests as dca_integration_tests
+from .dogstatsd import integration_tests as dsd_integration_tests
+from .go import fmt, generate, golangci_lint, ineffassign, lint, lint_licenses, misspell, vet
+from .trace_agent import integration_tests as trace_integration_tests
+from .utils import get_build_flags
 
 # We use `basestring` in the code for compat with python2 unicode strings.
 # This makes the same code work in python3 as well.
