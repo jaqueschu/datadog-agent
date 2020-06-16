@@ -27,6 +27,7 @@ var opts struct {
 	checkCmd    *flag.FlagSet
 	checkType   string
 	checkClient string
+	console     bool 	// windows only; execute on console rather than via SCM
 }
 
 // Version info sourced from build flags
