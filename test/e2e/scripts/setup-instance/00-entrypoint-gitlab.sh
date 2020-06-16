@@ -4,7 +4,7 @@ printf '=%.0s' {0..79} ; echo
 set -ex
 set -o pipefail
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")"
 
 git clean -fdx .
 
@@ -48,9 +48,9 @@ if [[ "${DATADOG_AGENT_IMAGE:0:8}" == "datadog/" ]]
 then
     echo "${DATADOG_AGENT_IMAGE} is hosted on a docker registry, checking if it's available"
     IMAGE_TAG=${DATADOG_AGENT_IMAGE:8}
-    IMAGE_NAME=$(echo -n ${IMAGE_TAG} | cut -f1 -d ':')
-    IMAGE_TAG=$(echo -n ${IMAGE_TAG} | cut -f2 -d ':')
-    curl -Lfs https://registry.hub.docker.com/v1/repositories/datadog/${IMAGE_NAME}/tags | \
+    IMAGE_NAME=$(echo -n "${IMAGE_TAG}" | cut -f1 -d ':')
+    IMAGE_TAG=$(echo -n "${IMAGE_TAG}" | cut -f2 -d ':')
+    curl -Lfs https://registry.hub.docker.com/v1/repositories/datadog/"${IMAGE_NAME}"/tags | \
         jq -re ".[] | select(.name==\"${IMAGE_TAG}\")" || {
             echo "The DATADOG_AGENT_IMAGE=${DATADOG_AGENT_IMAGE} returns a 404 on the registry.hub.docker.com"
             exit 2

@@ -8,7 +8,7 @@ BASE64_FLAGS="-w 0"
 if [[ $(uname) == "Darwin" ]]
 then
     echo "Currently running over Darwin"
-    echo "osx base64" | base64 ${BASE64_FLAGS} || {
+    echo "osx base64" | base64 "${BASE64_FLAGS}" || {
         echo "current base64 binary does not support ${BASE64_FLAGS}"
         BASE64_FLAGS=""
     }
@@ -16,7 +16,7 @@ fi
 
 set -e
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")"
 
 git clean -fdx .
 

@@ -29,7 +29,7 @@ if [ -z ${AZURE_SUBSCRIPTION_ID+x} -o -z ${AZURE_TENANT_ID+x} -o -z ${AZURE_CLIE
   exit 1
 fi
 
-az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID > /dev/null
+az login --service-principal -u "$AZURE_CLIENT_ID" -p "$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID" > /dev/null
 set -x
 
 if [ ${CLEAN_ALL+x} ]; then
@@ -46,9 +46,9 @@ fi
 for group in $groups; do
   echo "az group delete -n $group -y"
   if [ ${CLEAN_ASYNC+x} ]; then
-    ( az group delete -n $group -y || true ) &
+    ( az group delete -n "$group" -y || true ) &
   else
-    ( az group delete -n $group -y || true )
+    ( az group delete -n "$group" -y || true )
   fi
   printf "\n\n"
 done
@@ -62,8 +62,8 @@ fi
 for vm in $vms; do
   echo "az vm delete --ids $vm -y"
   if [ ${CLEAN_ASYNC+x} ]; then
-    (az vm delete --ids $vm -y || true) &
+    (az vm delete --ids "$vm" -y || true) &
   else
-    (az vm delete --ids $vm -y || true)
+    (az vm delete --ids "$vm" -y || true)
   fi
 done

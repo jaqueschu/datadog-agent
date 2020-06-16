@@ -19,7 +19,7 @@ export AZURE_SSH_KEY_PATH="$(pwd)/ssh-key"
 
 # show that the ssh key is there
 echo $(pwd)/ssh-key
-echo $AZURE_SSH_KEY_PATH
+echo "$AZURE_SSH_KEY_PATH"
 
 # start the ssh-agent and add the key
 eval $(ssh-agent -s)
@@ -90,8 +90,8 @@ export MAJOR_VERSION=$2
 # on linux it can just download the latest version from the package manager
 if [ -z ${AGENT_VERSION+x} ]; then
   pushd ../..
-    export AGENT_VERSION=`inv agent.version --url-safe --git-sha-length=7 --major-version $MAJOR_VERSION`
-    export DD_AGENT_EXPECTED_VERSION=`inv agent.version --url-safe --git-sha-length=7 --major-version $MAJOR_VERSION`
+    export AGENT_VERSION=`inv agent.version --url-safe --git-sha-length=7 --major-version "$MAJOR_VERSION"`
+    export DD_AGENT_EXPECTED_VERSION=`inv agent.version --url-safe --git-sha-length=7 --major-version "$MAJOR_VERSION"`
   popd
 fi
 

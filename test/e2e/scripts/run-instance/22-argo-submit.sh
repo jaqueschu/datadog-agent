@@ -4,14 +4,14 @@ printf '=%.0s' {0..79} ; echo
 set -x
 
 # ${DATADOG_AGENT_IMAGE} is provided by the CI
-test ${DATADOG_AGENT_IMAGE} || {
+test "${DATADOG_AGENT_IMAGE}" || {
     echo "DATADOG_AGENT_IMAGE envvar needs to be set" >&2
     exit 2
 }
 
 echo "DATADOG_AGENT_IMAGE=${DATADOG_AGENT_IMAGE}"
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")" || exit
 
 # TODO run all workflows ?
 

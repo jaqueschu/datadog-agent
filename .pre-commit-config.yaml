@@ -6,4 +6,4 @@ repos:
   rev: 2.1.1
   hooks:
     - id: shellcheck
-      args: ["--severity=info", "-e", "SC2059", "-e", "SC2028"]
+      args: ["--severity=info", "-e", "SC2059", "-e", "SC2028", "--shell=bash"]

@@ -14,7 +14,7 @@ _wait_binary() {
     echo "waiting for $1 binary to be in PATH=${PATH} ..."
     for i in {0..120}
     do
-        which $1 2> /dev/null && break
+        which "$1" 2> /dev/null && break
         sleep 1
     done
 }

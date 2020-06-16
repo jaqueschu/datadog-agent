@@ -3,7 +3,7 @@
 printf '=%.0s' {0..79} ; echo
 set -x
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")"
 
 for i in {0..60}
 do

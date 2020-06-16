@@ -4,13 +4,13 @@ printf '=%.0s' {0..79} ; echo
 set -o pipefail
 set -x
 
-cd "$(dirname $0)"
+cd "$(dirname "$0")" || exit
 
 WORKFLOWS=0
 # Wait for any Running workflow
 for workflow in $(./argo list -o name)
 do
-    while ./argo get ${workflow} -o json | jq 'select(.status.phase=="Running")' -re
+    while ./argo get "${workflow}" -o json | jq 'select(.status.phase=="Running")' -re
     do
         sleep 10
     done
@@ -29,7 +29,7 @@ echo "${WORKFLOWS} workflows are not in Running status anymore"
 EXIT_CODE=0
 for workflow in $(./argo list -o name)
 do
-    WF=$(./argo get ${workflow} -o json)
+    WF=$(./argo get "${workflow}" -o json)
     echo "${WF}" | jq 'select(.metadata.labels["workflows.argoproj.io/phase"]=="Succeeded")' -re || {
         # Display the workflow because it didn't match the jq select
         echo "${WF}" | jq .
